@@ -1,0 +1,92 @@
+body {
+    margin: 0;
+    font-family: sans-serif;
+    background-color: #111;
+    color: white;
+    overflow-x: hidden;
+}
+
+.outer {
+    position: relative;
+}
+
+.group {
+    position: relative;
+	left: 70%;
+}
+
+.container {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    width: 100%;
+}
+
+.panel {
+    position: fixed;   /* umesto absolute */
+    top: 50%;
+    left: 70%;         /* desno od teksta */
+    transform: translate(-50%, -50%);
+    width: auto;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;        /* GSAP menja ovo */
+}
+
+.panel img {
+    max-width: 80vw;
+    max-height: 80vh;
+    object-fit: contain;
+    border-radius: 15px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+}
+
+
+
+.group-title {
+    position: fixed;
+    top: 50%;
+    left: 15%;
+    transform: translateX(-50%);
+    font-size: 2rem;
+    text-align: left;
+    text-shadow: 0 2px 5px rgba(0,0,0,0.7);
+    z-index: 10;
+    pointer-events: none;
+	color: white;
+}
+
+#tekst p {
+	border: 2px solid white;
+	border-radius: 5px;
+	padding: 10px;
+}
+
+@media (max-width: 768px) {
+    .group-title {
+        top: 0;
+        left: 0;
+        transform: none;
+        width: 100%;
+        padding: 15px;
+        background: rgba(0,0,0,0.85);
+        font-size: 1.2rem;
+        text-align: center;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.7);
+        pointer-events: none;
+    }
+	.panel img {
+        max-width: 95vw;
+        max-height: 75vh;
+        border-radius: 10px;
+		left:50%;
+    }
+
+    #tekst p {
+        font-size: 1rem;
+        max-width: 90%;
+        text-align: center;
+    }
+}
