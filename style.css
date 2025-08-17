@@ -65,6 +65,10 @@ body {
 }
 
 @media (max-width: 768px) {
+	.outer{
+		width: auto;
+		height: auto;
+	}
     .group-title {
         top: 0;
         left: 0;
