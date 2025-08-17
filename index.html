@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -143,3 +144,131 @@ groups.forEach(group => {
 
 </body>
 </html>
+=======
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Naše uspomene ❤️</title>
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<div class="outer">
+	<div class="group" data-title="Srecan rodjendan ljubavi">
+        <div class="container">
+            <div class="panel" id="tekst"><p>Zelim ti najsrecniji rodjendan ikad </br>U nastavku ces videti neke od nasih slika </br>Ovo je kao neki memory trip</p></div>
+        </div>
+    </div>
+ 
+    <div class="group" data-title="Bechh️">
+        <div class="container">
+            <div class="panel"><img src="bec/1.jpg"></div>
+            <div class="panel"><img src="bec/2.jpg"></div>
+            <div class="panel"><img src="bec/3.jpg"></div>
+            <div class="panel"><img src="bec/4.jpg"></div>
+        </div>
+    </div>
+	<div class="group" data-title="Budimpeshtyy">
+        <div class="container">
+            <div class="panel"><img src="budimp/1.jpg"></div>
+            <div class="panel"><img src="budimp/2.jpg"></div>
+            <div class="panel"><img src="budimp/3.jpg"></div>
+            <div class="panel"><img src="budimp/4.jpg"></div>
+        </div>
+    </div>
+
+    <div class="group" data-title="Ovde smo sladki">
+        <div class="container">
+            <div class="panel"><img src="sladki/1.jpg"></div>
+            <div class="panel"><img src="sladki/2.jpg"></div>
+			<div class="panel"><img src="sladki/3.jpg"></div>
+			<div class="panel"><img src="sladki/4.jpg"></div>
+        </div>
+    </div>
+	
+	<div class="group" data-title="Vidi kako smo mladjani">
+        <div class="container">
+            <div class="panel"><img src="mladi/1.jpg"></div>
+            <div class="panel"><img src="mladi/2.jpg"></div>
+			<div class="panel"><img src="mladi/3.jpg"></div>
+			<div class="panel"><img src="mladi/4.jpg"></div>
+			<div class="panel"><img src="mladi/5.jpg"></div>
+			<div class="panel"><img src="mladi/6.jpg"></div>
+			<div class="panel"><img src="mladi/7.jpg"></div>
+			<div class="panel"><img src="mladi/8.jpg"></div>
+			<div class="panel"><img src="mladi/9.jpg"></div>
+			<div class="panel"><img src="mladi/10.jpg"></div>
+        </div>
+    </div>
+	<div class="group" data-title="Uuu ovde smo vredni">
+        <div class="container">
+            <div class="panel"><img src="vredni/1.jpg"></div>
+            <div class="panel"><img src="vredni/2.jpg"></div>
+			<div class="panel"><img src="vredni/3.jpg"></div>
+			<div class="panel"><img src="vredni/4.jpg"></div>
+			<div class="panel"><img src="vredni/5.jpg"></div>
+			<div class="panel"><img src="vredni/6.jpg"></div>
+			<div class="panel"><img src="vredni/7.jpg"></div>
+			<div class="panel"><img src="vredni/8.jpg"></div>
+			<div class="panel"><img src="vredni/9.jpg"></div>
+			<div class="panel"><img src="vredni/10.jpg"></div>
+			<div class="panel"></div>
+        </div>
+    </div>
+</div>
+
+<div class="group-title">Bechh</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+<script>
+gsap.registerPlugin(ScrollTrigger);
+
+const groups = document.querySelectorAll(".group");
+const titleEl = document.querySelector(".group-title");
+
+groups.forEach(group => {
+    const panels = group.querySelectorAll(".panel");
+    const groupTitle = group.dataset.title;
+    const groupHeight = panels.length * window.innerHeight;
+
+    // Postavljamo visinu grupe da odgovara broju slika
+    group.style.height = groupHeight + "px";
+
+    // Prikaz prve slike odmah
+    gsap.set(panels[0], {opacity: 1});
+
+    panels.forEach((panel, i) => {
+        ScrollTrigger.create({
+            trigger: group,
+            start: () => (i * window.innerHeight) + "px top",
+            end: () => ((i + 1) * window.innerHeight) + "px top",
+            scrub: true,
+            onEnter: () => {
+                if(i>0) gsap.to(panels[i-1], {opacity:0, duration:0.5});
+                gsap.to(panel, {opacity:1, duration:0.5});
+            },
+            onLeaveBack: () => {
+                if(i<panels.length-1) gsap.to(panels[i+1], {opacity:0, duration:0.5});
+                gsap.to(panel, {opacity:1, duration:0.5});
+            }
+        });
+    });
+
+    // Menjanje teksta kad grupa uđe u viewport
+    ScrollTrigger.create({
+        trigger: group,
+        start: "top center",
+        end: "bottom center",
+        onEnter: () => titleEl.textContent = groupTitle,
+        onEnterBack: () => titleEl.textContent = groupTitle
+    });
+});
+</script>
+
+</body>
+</html>
+>>>>>>> dd9c56c4364cc961f737edfb6bdc6bedf65a859e
